@@ -1,36 +1,52 @@
+/*
+ * CPU Simulator
+ *
+ * 2016, Universidade Federal de Sergipe - UFS
+ * Arianne.
+ *
+ * Enjoy.
+*/
+
 body {
     margin-top: 20px;
 }
+
 #conector {
     background-color: gray;
-    width:45px;
-    height:50px;
+    width: 45px;
+    height: 50px;
     margin-left: 85px;
     margin-top: -100px;
     background: url("../img/03.jpg");
 }
+
 .output {
     background-color: gray;
     width: 130px;
     height: 10px;
     margin-top: 100px;
 }
+
 .output input {
     width: 90px;
     margin-top: -6px;
 }
+
 .addresses {
     margin-top: 50px;
     background: url("../img/bg-input.png");
 }
+
 .addresses input {
     margin-bottom: 25px;
 }
+
 .circuit-board {
     width: 550px;
     height: 450px;
     background: url("../img/bg.jpg");
 }
+
 .circuit-board #memory {
     width: 100px;
     height: 280px;
@@ -42,19 +58,21 @@ body {
 .circuit-board #memory #addresses {
     margin-top: 30px;
 }
+
 .circuit-board #memory #addresses p {
     margin-bottom: 30px;
     padding-left: 55%;
     color: #e2c34a;
 }
+
 .circuit-board #cpu {
     height: 400px;
     margin-top: 20px;
     background-color: #ddbf47;
 }
-.circuit-board #cpu input {
 
-}
+.circuit-board #cpu input {}
+
 .circuit-board #registers {
     width: 120px;
     padding-left: 8px;
@@ -62,27 +80,31 @@ body {
     background-color: white;
     margin-top: 30%;
 }
-.circuit-board #registers #register-a{
+
+.circuit-board #registers #register-a {
     width: 70px;
     margin-left: 15px;
     margin-top: 20px;
     margin-bottom: 15px;
 }
-.circuit-board #registers #register-b{
+
+.circuit-board #registers #register-b {
     width: 70px;
     margin-left: 15px;
 }
+
 .circuit-board #registers table {
     width: 100%;
     height: 100%;
     text-align: center !important;
 }
-.circuit-board #registers table th{
+
+.circuit-board #registers table th {
     text-align: center !important;
 }
-.circuit-board #registers td {
 
-}
+.circuit-board #registers td {}
+
 .circuit-board #control-unit {
     width: 100%;
     height: 100px;
@@ -90,29 +112,33 @@ body {
     margin-top: 50%;
     background: url("../img/unit-control.jpg") no-repeat;
 }
+
 .circuit-board #control-unit #pc input {
     width: 70px;
     margin-left: 15px;
     margin-top: 20px;
     margin-bottom: 15px;
 }
+
 .circuit-board #control-unit #ir input {
     width: 133px;
     margin-left: 3px;
 }
+
 .circuit-board #decoder {
     width: 100px;
     height: 100px;
     background-color: #ff6bd9;
     margin-top: 50%;
     background: url("../img/decoder.jpg") no-repeat;
-
 }
+
 .circuit-board #decoder input {
     width: 70px;
     margin-left: 15px;
     margin-top: 40px;
 }
+
 .circuit-board #alu {
     width: 100px;
     height: 100px;
@@ -120,47 +146,58 @@ body {
     margin-top: 50%;
     background: url("../img/alu.jpg") no-repeat;
 }
+
 .circuit-board #alu input {
     width: 70px;
     margin-left: 15px;
     margin-top: 40px;
 }
+
 .progress-cpu {
     border: 1px solid;
     height: 400px;
     width: 100%;
     overflow: scroll;
 }
+
 select {
     height: 33px;
     border: 1px solid;
     border-radius: 5px;
 }
+
 .progress-cpu-navbar {
     margin-top: 20px;
 }
-.progress-cpu-navbar button{
+
+.progress-cpu-navbar button {
     background: none;
     border: 0;
     outline: none;
     float: right;
 }
+
 .error {
     color: red;
 }
+
 .decoder {
     color: #c142a1;
 }
+
 .alu {
     color: #b0b160;
 }
+
 .uc {
     color: #a75c63;
 }
+
 .cycle {
     font-style: italic;
     font-weight: bold;
 }
+
 div.tooltip-inner {
     max-width: 350px;
 }
