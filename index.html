@@ -1,25 +1,17 @@
 <!DOCTYPE html>
-<!--
- * CPU Simulator
- *
- * 2016, Universidade Federal de Sergipe - UFS
- * Arianne.
- *
- * Enjoy.
--->
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>CPU Simulator</title>
-    <link rel="shortcut icon" href="assets/img/icon.png">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-    <div class="console col-md-3">
-        <select id="examples">
+<div class="console col-md-3">
+    <div class="terms">
+        <a data-toggle="modal" data-target="#modal">Como Usar</a>
+    </div>
+    <select id="examples">
         <option value="add" selected>ADD</option>
         <option value="sub">SUB</option>
         <option value="and">AND</option>
@@ -27,69 +19,109 @@
         <option value="jmp">JMP</option>
         <option value="htl">HTL</option>
     </select>
-        <button class="btn btn-info" id="run-example" onclick="put_example()">Mostrar Exemplo</button><br><br>
-        <button class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Aperte aqui para começar." id="start-cpu" onclick="start()">Start</button>
-        <button class="btn btn-danger" id="stop-cpu" onclick="stop()">Stop</button>
-        <button class="btn btn-default" id="pause-cpu" disabled>Pausar</button>
-        <button class="btn btn-default" id="continue-cpu" disabled>Continuar</button>
-        <div class="progress-cpu-navbar">Console <button onclick="clear_console()"><span class="glyphicon glyphicon-trash"></span></button></div>
-        <div class="progress-cpu" id="progress-cpu">
+    <button class="btn btn-info" id="run-example" onclick="put_example()">Mostrar Exemplo</button><br><br>
+    <button class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="Aperte aqui para começar." id="start-cpu" onclick="start()">Start</button>
+    <button class="btn btn-danger" id="stop-cpu" onclick="stop()">Stop</button>
+    <button class="btn btn-default" id="pause-cpu" disabled>Pausar</button>
+    <button class="btn btn-default" id="continue-cpu" disabled>Continuar</button>
+    <div class="progress-cpu-navbar">Console <button onclick="clear_console()"><span class="glyphicon glyphicon-trash"></span></button></div>
+    <div class="progress-cpu" id="progress-cpu">
+    </div>
+</div>
+<div id="modal" class="modal fade" role="dialog">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h3 class="modal-title">Receita</h3>
         </div>
-        <div class="terms">
-
+        <div class="modal-body">
+            <div class="col-md-12">
+                <h6>* Antes de mais nada, esse projeto foi desenvolvido para conclusão da disciplina de Arquitetura de Computadores I
+                    da Universidade Federal de Sergipe - UFS.</h6><br>
+                <p>O projeto tenta simular em software uma CPU simples, mostrando o fluxo de dados após a leitura
+                de uma <strong>palavra</strong> de instrução na memória. Temos:</p>
+                <ul style="text-align: left">
+                    <li>Palavra de memória de <strong>16 bits</strong>.</li>
+                    <li>Duas operações aritméticas (ADD, SUB),</li>
+                    <li>Duas operações lógicas bit a bit (OR, AND),</li>
+                    <li>Uma instrução de movimento de dados (MOV),</li>
+                    <li>Uma instrução de salto incondicional (JMP).</li>
+                </ul><br>
+                <p>A palavra de memória é dividida da seguinte forma:</p>
+                <img src="assets/img/info.jpg" width="300"><br>
+                <p>Por padrão, como referência, existem as seguintes codificações:</p>
+            </div>
+            <div class="col-md-6">
+                <img src="assets/img/info2.jpg" width="150">
+            </div>
+            <div class="col-md-6">
+                <img src="assets/img/info3.jpg" width="150">
+            </div>
+            <div class="col-md-12">
+                <p>Um exemplo prático:</p>
+                <img src="assets/img/info4.jpg" width="200">
+            </div>
+            <div class="col-md-12" style="margin-top: 30px">
+                <p>Dúvidas ou sugestões? <i>arianne.macena@gmail.com</i></p>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">OK</button>
         </div>
     </div>
-    <div class="addresses col-md-2">
-        <input id="address-a" type="text" maxlength="16" minlength="16">
-        <input id="address-b" type="text" maxlength="16" minlength="16">
-        <input id="address-c" type="text" maxlength="16" minlength="16">
-        <input id="address-d" type="text" maxlength="16" minlength="16">
-        <input id="address-e" type="text" maxlength="16" minlength="16">
-    </div>
-    <div class="circuit-board col-md-7">
-        <div title="Memória" data-toggle="tooltip" data-placement="top" id="memory" class="col-md-3">
-            <div id="addresses">
-                <p>0 <span></span></p>
-                <p>1 <span></span></p>
-                <p>2 <span></span></p>
-                <p>3 <span></span></p>
-                <p>4 <span></span></p>
-            </div>
-            <div id="conector"></div>
-            <div title="Saída" data-toggle="tooltip" data-placement="left" class="output">
-                <input id="output-in" disabled>
-            </div>
+</div>
+</div>
+<div class="addresses col-md-2">
+    <input id="address-a" type="text" maxlength="16" minlength="16">
+    <input id="address-b" type="text" maxlength="16" minlength="16">
+    <input id="address-c" type="text" maxlength="16" minlength="16">
+    <input id="address-d" type="text" maxlength="16" minlength="16">
+    <input id="address-e" type="text" maxlength="16" minlength="16">
+</div>
+<div class="circuit-board col-md-7">
+    <div title="Memória" data-toggle="tooltip" data-placement="top" id="memory" class="col-md-3">
+        <div id="addresses">
+            <p>0 <span></span></p>
+            <p>1 <span></span></p>
+            <p>2 <span></span></p>
+            <p>3 <span></span></p>
+            <p>4 <span></span></p>
         </div>
-        <div id="cpu" class="col-md-offset-1 col-md-8">
-            <div class="col-md-7">
-                <div title="Decodificador" data-toggle="tooltip" data-placement="top" id="decoder">
-                    <input id="decoder-in" disabled>
-                </div>
-                <div title="Unidade de Controle" data-toggle="tooltip" data-placement="top" id="control-unit">
-                    <div title="PC" data-toggle="tooltip" data-placement="right" id="pc">
-                        <input id="pc-in" disabled>
-                    </div>
-                    <div title="IR" data-toggle="tooltip" data-placement="right" id="ir">
-                        <input id="ir-in" disabled>
-                    </div>
-                </div>
+        <div id="conector"></div>
+        <div title="Saída" data-toggle="tooltip" data-placement="left" class="output">
+            <input id="output-in"disabled>
+        </div>
+    </div>
+    <div id="cpu" class="col-md-offset-1 col-md-8">
+        <div class="col-md-7">
+            <div title="Decodificador" data-toggle="tooltip" data-placement="top" id="decoder">
+                <input id="decoder-in" disabled>
             </div>
-            <div class="col-md-5">
-                <div title="Registradores" data-toggle="tooltip" data-placement="top" id="registers">
-                    <label for="register-a">A</label>
-                    <input id="register-a" disabled><br>
-                    <label for="register-b">B</label>
-                    <input id="register-b" disabled>
+            <div title="Unidade de Controle" data-toggle="tooltip" data-placement="top" id="control-unit">
+                <div title="PC" data-toggle="tooltip" data-placement="right" id="pc">
+                    <input id="pc-in" disabled>
                 </div>
-                <div title="ULA" data-toggle="tooltip" data-placement="top" id="alu">
-                    <input id="alu-in" disabled>
+                <div title="IR" data-toggle="tooltip" data-placement="right" id="ir">
+                    <input id="ir-in" disabled>
                 </div>
             </div>
         </div>
+        <div class="col-md-5">
+            <div title="Registradores" data-toggle="tooltip" data-placement="top" id="registers">
+                <label for="register-a">A</label>
+                <input id="register-a" disabled><br>
+                <label for="register-b">B</label>
+                <input id="register-b" disabled>
+            </div>
+            <div title="ULA" data-toggle="tooltip" data-placement="top" id="alu">
+                <input id="alu-in" disabled>
+            </div>
+        </div>
     </div>
-    <script src="assets/js/jquery-3.1.1.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/cpu.js"></script>
+</div>
+<script src="assets/js/jquery-3.1.1.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/cpu.js"></script>
 </body>
-
 </html>
