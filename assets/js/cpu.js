@@ -1,13 +1,10 @@
-/**
- * 
- * CPU Simulator
- *
- * 2016, Universidade Federal de Sergipe - UFS
- * Arianne.
- *
- * Enjoy.
- *
- */
+console.log('                    ');
+console.log(" /                  \ ");
+console.log("/    CPU SIMULATOR   \ ");
+console.log('\       2 0 1 6      /');
+console.log(' \        UFS       / ');
+console.log('  \                / ');
+console.log('   \    Annezao   / ');
 $('#stop-cpu').attr("disabled", true);
 
 var mar = null;
@@ -22,7 +19,6 @@ var operand;
 var operand_jump = null;
 var mask = "0000000000000000";
 var isPaused = false;
-var registerBeingUsed;
 
 var register_A = document.getElementById('register-a');
 var register_B = document.getElementById('register-b');
@@ -152,13 +148,13 @@ function cycle(opcode) {
                         var origin = decode_register(operand);
                         if (origin != null) {
                             destination.value = (origin.value.toString(2) | destination.value.toString(2));
-                            console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                            console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                         } else {
                             console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
                         }
                     } else {
                         output.value = (parseInt(operand, 2) & parseInt(destination.value, 2)).toString(2);
-                        console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                        console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                     }
                 } else {
                     console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
@@ -180,13 +176,13 @@ function cycle(opcode) {
                         var origin = decode_register(operand);
                         if (origin != null) {
                             destination.value = (origin.value.toString(2) | destination.value.toString(2));
-                            console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                            console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                         } else {
                             console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
                         }
                     } else {
                         output.value = (parseInt(operand, 2) | parseInt(destination.value, 2)).toString(2);
-                        console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                        console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                     }
                 } else {
                     console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
@@ -205,13 +201,13 @@ function cycle(opcode) {
                         var origin = decode_register(operand);
                         if (origin != null) {
                             destination.value = origin.value;
-                            $("#progress-cpu").append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe valor.");
+                            $("#progress-cpu").append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe valor.");
                         } else {
                             $("#progress-cpu").append("<br><span class='error'>Código de operando inválido.</span>");
                         }
                     } else {
                         destination.value = parseInt(operand, 2);
-                        $("#progress-cpu").append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe valor.");
+                        $("#progress-cpu").append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe valor.");
                     }
                 } else {
                     $("#progress-cpu").append("<br><span class='error'>Código de operando inválido.</span>");
@@ -246,13 +242,13 @@ function cycle(opcode) {
                         origin = decode_register(operand);
                         if (origin != null) {
                             destination.value = (parseInt(origin.value) + parseInt(destination.value));
-                            console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                            console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                         } else {
                             console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
                         }
                     } else {
                         output.value = (operand + destination.value);
-                        console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                        console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                     }
                 } else {
                     console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
@@ -272,13 +268,13 @@ function cycle(opcode) {
                         var origin = decode_register(operand);
                         if (origin != null) {
                             destination.value = (parseInt(destination.value) - parseInt(origin.value));
-                            console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                            console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                         } else {
                             console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
                         }
                     } else {
                         destination.value = (destination.value - operand);
-                        console_cpu.append("<br>* Registrador <strong>" + registerBeingUsed + "</strong> recebe resultado da operação.");
+                        console_cpu.append("<br>* Registrador <strong>" + destination.getAttribute('name') + "</strong> recebe resultado da operação.");
                     }
                 } else {
                     console_cpu.append("<br><span class='error'>Código de operando inválido.</span>");
@@ -301,10 +297,8 @@ function cycle(opcode) {
 function decode_register(value) {
     switch (value) {
         case "100001":
-            registerBeingUsed = "A";
             return register_A;
         case "100010":
-            registerBeingUsed = "B";
             return register_B;
         default:
             return null;
